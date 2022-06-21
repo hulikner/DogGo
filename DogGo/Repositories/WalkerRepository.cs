@@ -31,14 +31,9 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-<<<<<<< HEAD
-                        SELECT Id, [Name], ImageUrl, NeighborhoodId
-                        FROM Walker
-=======
                         SELECT w.Id, w.Name AS WalkerName, w.ImageUrl, w.NeighborhoodId, n.Name AS NeighborhoodName
                         FROM Walker w
                         LEFT JOIN Neighborhood n ON w.NeighborhoodId = n.Id
->>>>>>> fc66eaef44b93781dfc8e379769f4856dba091f4
                     ";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -49,20 +44,14 @@ namespace DogGo.Repositories
                             Walker walker = new Walker
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
-<<<<<<< HEAD
-                                Name = reader.GetString(reader.GetOrdinal("Name")),
-                                ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
-                                NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId"))
-=======
-                                Name = reader.GetString(reader.GetOrdinal("WalkerName")),
                                 ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
                                 NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId")),
+                                Name = reader.GetString(reader.GetOrdinal("WalkerName")),
                                 Neighborhood = new Neighborhood()
                                 {
                                     Id = reader.GetInt32(reader.GetOrdinal("NeighborhoodId")),
                                     Name = reader.GetString(reader.GetOrdinal("NeighborhoodName"))
                                 }
->>>>>>> fc66eaef44b93781dfc8e379769f4856dba091f4
                             };
 
                             walkers.Add(walker);
@@ -82,11 +71,7 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-<<<<<<< HEAD
                         SELECT Id, [Name], ImageUrl, NeighborhoodId
-=======
-                        SELECT Id, [Name], ImageUrl, NeighborhoodId, Phone
->>>>>>> fc66eaef44b93781dfc8e379769f4856dba091f4
                         FROM Walker
                         WHERE Id = @id
                     ";
@@ -111,6 +96,44 @@ namespace DogGo.Repositories
                         {
                             return null;
                         }
+                    }
+                }
+            }
+        }
+
+        public List<Walker> GetWalkersInNeighborhood(int neighborhoodId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                SELECT Id, [Name], ImageUrl, NeighborhoodId
+                FROM Walker
+                WHERE NeighborhoodId = @neighborhoodId
+            ";
+
+                    cmd.Parameters.AddWithValue("@neighborhoodId", neighborhoodId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        List<Walker> walkers = new List<Walker>();
+                        while (reader.Read())
+                        {
+                            Walker walker = new Walker
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
+                                NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId"))
+                            };
+
+                            walkers.Add(walker);
+                        }
+
+                        return walkers;
                     }
                 }
             }
