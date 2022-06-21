@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DogGo.Repositories;
 
 namespace DogGo
 {
@@ -25,6 +26,8 @@ namespace DogGo
         {
             services.AddControllersWithViews();
             services.AddTransient<IWalkerRepository, WalkerRepository>();
+            services.AddTransient<IOwnerRepository, OwnerRepository>();
+
 
         }
 
