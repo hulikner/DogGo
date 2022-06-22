@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj": {}
+    "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj": {
+    "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
+        "projectUniqueName": "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
         "projectName": "DogGo",
-        "projectPath": "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
-        "packagesPath": "C:\\Users\\deric\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\obj\\",
+        "projectPath": "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
+        "packagesPath": "C:\\Users\\hulik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\deric\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hulik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

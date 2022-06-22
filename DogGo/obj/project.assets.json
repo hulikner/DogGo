@@ -7606,19 +7606,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\deric\\.nuget\\packages\\": {}
+    "C:\\Users\\hulik\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
+      "projectUniqueName": "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
       "projectName": "DogGo",
-      "projectPath": "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
-      "packagesPath": "C:\\Users\\deric\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\obj\\",
+      "projectPath": "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\DogGo.csproj",
+      "packagesPath": "C:\\Users\\hulik\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hulik\\workspace\\csharp\\DogGo\\DogGo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\deric\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hulik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7678,13 +7678,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\deric\\workspace\\csharp\\DogGo\\DogGo\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
