@@ -11,9 +11,9 @@ namespace DogGo.Models.ViewModels
             get
             {
                 int totalMins = Walks.Select(w => w.Duration).Sum() / 60;
-                int totalHrs = totalMins / 60;
+                int hrs = totalMins / 60;
                 int mins = totalMins % 60;
-                return $"{totalHrs}hr {mins}mins";
+                return $"{hrs}hr {mins}mins";
             }
         }
     }
