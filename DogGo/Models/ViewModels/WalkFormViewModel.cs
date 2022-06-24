@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace DogGo.Models.ViewModels
 {
@@ -6,6 +7,8 @@ namespace DogGo.Models.ViewModels
     {
         public List<Walker> Walkers { get; set; }
         public List<Dog> Dogs { get; set; }
-        public List<Walk> Walks { get; set; }
+        [DisplayName("Dog(s)")]
+        public List<int> DogIds { get; set; }
+        public Walk Walk { get; set; }
     }
 }

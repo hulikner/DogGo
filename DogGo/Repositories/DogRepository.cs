@@ -106,39 +106,19 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                INSERT INTO Dog ([Name], OwnerId, Breed, Notes, ImageUrl)
-                OUTPUT INSERTED.ID
-                VALUES (@name, @ownerId, @breed, @notes, @imageUrl);
-            ";
+                                        INSERT INTO Dog ([Name], OwnerId, Breed, Notes, ImageUrl)
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@name, @ownerId, @breed, @notes, @imageUrl)";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
-                    cmd.Parameters.AddWithValue("@breed", dog.Breed);
                     cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
+                    cmd.Parameters.AddWithValue("@breed", dog.Breed);
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes == null ? DBNull.Value : dog.Notes);
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl == null ? DBNull.Value : dog.ImageUrl);
 
-                    // nullable columns
-                    if (dog.Notes == null)
-                    {
-                        cmd.Parameters.AddWithValue("@notes", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@notes", dog.Notes);
-                    }
+                    int id = (int)cmd.ExecuteScalar();
 
-                    if (dog.ImageUrl == null)
-                    {
-                        cmd.Parameters.AddWithValue("@imageUrl", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl);
-                    }
-
-
-                    int newlyCreatedId = (int)cmd.ExecuteScalar();
-
-                    dog.Id = newlyCreatedId;
-
+                    dog.Id = id;
                 }
             }
         }
@@ -148,27 +128,27 @@ namespace DogGo.Repositories
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
-
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                            UPDATE Dog
-                            SET 
-                                [Name] = @name, 
-                                OwnerId = @ownerId, 
-                                Breed = @breed, 
-                                Notes = @notes, 
-                                ImageUrl = @imageUrl
-                            WHERE Id = @id";
+                                        UPDATE Dog
+                                        SET
+                                            [Name] = @name,
+                                            OwnerId = @ownerId,
+                                            Breed = @breed,
+                                            Notes = @notes,
+                                            ImageUrl = @imageUrl
+                                        WHERE Id = @id";
 
+                    cmd.Parameters.AddWithValue("@id", dog.Id);
                     cmd.Parameters.AddWithValue("@name", dog.Name);
                     cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes);
-                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl);
-                    cmd.Parameters.AddWithValue("@id", dog.Id);
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes == null ? DBNull.Value : dog.Notes);
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl == null ? DBNull.Value : dog.ImageUrl);
 
                     cmd.ExecuteNonQuery();
+
                 }
             }
         }

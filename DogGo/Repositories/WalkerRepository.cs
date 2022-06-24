@@ -30,11 +30,9 @@ namespace DogGo.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"
-                        SELECT w.Id, w.Name AS WalkerName, w.ImageUrl, w.NeighborhoodId, n.Name AS NeighborhoodName
-                        FROM Walker w
-                        LEFT JOIN Neighborhood n ON w.NeighborhoodId = n.Id
-                    ";
+                    cmd.CommandText = @"SELECT w.Id, w.Name AS WalkerName, w.ImageUrl, w.NeighborhoodId, n.Name AS NeighborhoodName
+                                        FROM Walker w
+                                        LEFT JOIN Neighborhood n ON w.NeighborhoodId = n.Id";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -141,6 +139,30 @@ namespace DogGo.Repositories
 
                         return walkers;
                     }
+                }
+            }
+        }
+
+        public void AddWalker(Walker walker)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    INSERT INTO Walker ([Name], ImageUrl, NeighborhoodId)
+                    OUTPUT INSERTED.ID
+                    VALUES (@name, @ImageUrl, @neighborhoodId);
+                ";
+
+                    cmd.Parameters.AddWithValue("@name", walker.Name);
+                    cmd.Parameters.AddWithValue("@ImageUrl", walker.ImageUrl);
+                    cmd.Parameters.AddWithValue("@neighborhoodId", walker.NeighborhoodId);
+
+                    int id = (int)cmd.ExecuteScalar();
+
+                    walker.Id = id;
                 }
             }
         }
